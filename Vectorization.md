@@ -1,7 +1,7 @@
 # Various File Formats 
 
 #### References : 
-* https://www.youtube.com/watch?v=GV7vpR7vpjM
+* [ORC File & Vectorization - Improving Hive Data Storage and Query Performance](https://www.youtube.com/watch?v=GV7vpR7vpjM)
 * 
 
 The big data world started off with 
