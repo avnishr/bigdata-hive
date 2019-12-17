@@ -2,7 +2,7 @@
 
 #### References : 
 * [ORC File & Vectorization - Improving Hive Data Storage and Query Performance](https://www.youtube.com/watch?v=GV7vpR7vpjM)
-* 
+* [ Apache ORC Format ] (https://orc.apache.org/)
 
 The big data world started off with 
 
