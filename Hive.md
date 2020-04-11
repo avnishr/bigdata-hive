@@ -58,3 +58,11 @@ CREATE TABLE IF NOT EXISTS table_name (
 INSERT OVERWRITE TABLE abc
 SELECT * FROM STOCKS;
 
+
+### SORT BY, ORDER BY, DISTRIBUTE BY, CLUSTER BY
+
+DISTRIBUTE BY :- Divide the rows into N groups/reducers. However the rows are not sorted
+
+CLUSTER BY :-  means DISTRIBUTE BY and SORT BY
+
+
