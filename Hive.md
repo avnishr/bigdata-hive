@@ -14,9 +14,9 @@ AUTO Map Join
 
 In step 1, Hive 
 
-# Set hive.mapjoin.smalltable.filesize = 30000000 bytes
+### Set hive.mapjoin.smalltable.filesize = 30000000 bytes
 
 
-# SET hive.auto.convert.join = true
+### SET hive.auto.convert.join = true
 
 The above setting will enable auto map join in hive. 
