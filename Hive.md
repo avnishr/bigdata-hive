@@ -14,9 +14,23 @@ AUTO Map Join
 
 In step 1, Hive 
 
-### Set hive.mapjoin.smalltable.filesize = 30000000 bytes
-
-
-### SET hive.auto.convert.join = true
+Set hive.mapjoin.smalltable.filesize = 30000000 bytes
+SET hive.auto.convert.join = true
 
 The above setting will enable auto map join in hive. 
+
+# SMB Join 
+
+Sort Merge Bucketed Join 
+1. ALL join tables must be bucketized
+2. Number of buckets in big table must be divisible by number of buckets of other tables
+3. Bucket columns and Join Columns in the query must be same 
+4. hive.enforce.bucketing = true 
+
+CREATE TABLE IF NOT EXISTS table_name (
+ column1 STRING, 
+ column2 INT,
+ column3 FLOAT
+ ) CLUSTERED BY (column1, column2) SORTED BY (column1, column2) INTO 10 BUCKETS
+ ROW FORMAT DELIMITED
+ FIELDS TERMINATED BY ',';
