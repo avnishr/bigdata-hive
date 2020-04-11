@@ -25,12 +25,12 @@ Sort Merge Bucketed Join
 1. ALL join tables must be bucketized
 2. Number of buckets in big table must be divisible by number of buckets of other tables
 3. Bucket columns and Join Columns in the query must be same 
-4. SET hive.enforce.bucketing = true 
-   SET hive.auto.convert.sortmerge.join = true
-   SET hive.optimize.bucketmapjoin = true
-   SET hive.optimize.bucketmapjoin.sortedmerge  = true
-   SET hive.auto.convert.sortmerge.join.noconditionaltask = true Set to true so that map join hint is not needed
-   SET hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat
+4. SET hive.enforce.bucketing = true  </br>
+   SET hive.auto.convert.sortmerge.join = true  </br>
+   SET hive.optimize.bucketmapjoin = true </br>
+   SET hive.optimize.bucketmapjoin.sortedmerge  = true </br>
+   SET hive.auto.convert.sortmerge.join.noconditionaltask = true Set to true so that map join hint is not needed  </br>
+   SET hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat  </br>
 
 hive.auto.convert.join.noconditionaltask.size
 
