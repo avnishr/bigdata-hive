@@ -24,3 +24,11 @@ https://www.youtube.com/watch?v=Cc2P-pPtTCw
 
 # Tuning Spark 
 https://www.youtube.com/watch?v=YgQgJceojJY
+
+# Analyzed Logical Plan 
+
+Spark may treat 
+
+column1 = 0
+
+and column1 = 0.0  differently. 
