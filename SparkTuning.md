@@ -49,6 +49,14 @@ Very slow. SET spark.sql.hive.covertMetastoreOrc = true ; will turn the hive orc
 
 FILEScan orc default.tabdemo1[col1#454775,col2#454777, Batched:True, DataFilters: [isnotnull(col1#454775)
 
+CREATE TABLE tabDemo1(col1 int, col2 int) 
+PARTITIONED BY (col3 int) 
+STORED AS ORC;
+
+USES Hive ORC 
+
+However v
+
 
 ## 3 Vectorized Reader 
 
