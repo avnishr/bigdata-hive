@@ -27,6 +27,25 @@ https://www.youtube.com/watch?v=YgQgJceojJY
 
 # Analyzed Logical Plan 
 
+A query which has a filter 
+
+WHERE col1 = 0.0 shows two rows 
+and 
+WHERE col1 = 0  shows 1 row
+
+The analyze logical Plan 
+
+FILTER NOT (cast(col2#435841 as double ) = case (0.0 as double)
+
+Where as the filter 
+
+WHERE col1 = 0 
+
+FILTER NOT (cast(col2#435841 as int) = 0
+
+
+
+
 Spark may treat 
 
 column1 = 0
