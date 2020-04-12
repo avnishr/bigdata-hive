@@ -16,3 +16,7 @@ Apache Spark Core—Deep Dive—Proper Optimization Daniel Tomes Databricks http
 spark.sql.files.maxPartitionBytes 
 
 This field provides the size of each partition. This is useful if I have more cores and the data processed using lesser # of partitions. 
+
+
+# Data Skew
+https://www.youtube.com/watch?v=Cc2P-pPtTCw
