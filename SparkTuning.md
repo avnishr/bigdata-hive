@@ -20,3 +20,7 @@ This field provides the size of each partition. This is useful if I have more co
 
 # Data Skew
 https://www.youtube.com/watch?v=Cc2P-pPtTCw
+
+
+# Tuning Spark 
+https://www.youtube.com/watch?v=YgQgJceojJY
