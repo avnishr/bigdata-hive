@@ -36,7 +36,6 @@ Note:- If we run this command two times, the number of records will be added twi
 INSERT OVERWRITE TABLE TAB SELECT COL1, COL2, COL3 FROM EMP_TAB;
 
 # WRITE source data into two tables 
------------
 
  1. Create two target tables
  2. Create table DEV (id int, name string, desg string) stored as textfile;
@@ -60,8 +59,7 @@ Desc < table name>
 7. ALTER TABLE SET fileformat avro;
 
 
-USE CASE 4. 
------------
+# SORT BY DISTRIBUTE BY and CLUSTER BY 
 
 ORDER BY  - SELECT COL2 from TABLE5 ORDER BY COL2
 
@@ -76,54 +74,56 @@ CLUSTER BY - short form of (DISTRIBUTE BY and SORT BY)
 
 select col2 from table5 cluster by col2; 
 
-
-USE CASE 5. 
--------------
-
+# Conditions in HIVE
 Conditional Statements: IF 
 
-SELECT IF(col3= 'England', col1, col2) FROM TABLE1; 
+1. SELECT IF(col3= 'England', col1, col2) FROM TABLE1; 
 
-So if the condition is met, select col1 and if the condition is NOT met select col2.
+	So if the condition is met, select col1 and if the condition is NOT met select col2.
 
-CASE statement 
+2. CASE statement 
 
-SELECT CASE col2 
-	WHEN 'Apple' THEN 'The fruit is Apple'
-	WHEN 'Orange' THEN 'The fruit is Orange'
-	ELSE 'Not recognized fruit'
-	END 
-FROM table1 
+	SELECT CASE col2 
+		WHEN 'Apple' THEN 'The fruit is Apple'
+		WHEN 'Orange' THEN 'The fruit is Orange'
+		ELSE 'Not recognized fruit'
+		END 
+	FROM table1 
+
+3. ISNULL 
+	SELECT ISNULL(col1) FROM table1
+
+4. COALESCE 
+	SELECT COALESCE(col1, col2, col3) FROM table1 	Select first non null values from table1
+
+5. NVL 
+	SELECT NVL(col1, col2) FROM table1. Select col2 if col1 is NULL
 
 
-USE CASE 6. 
--------------
+# EXPLODE/LATERAL VIEW
 
-SELECT ISNULL(col1) FROM table1
-
-SELECT COALESCE(col1, col2, col3) FROM table1 	Select first non null values from table1
-
-SELECT NVL(col1, col2) FROM table1. Select col2 if col1 is NULL
-
-
-USE CASE 7
-----------
 EXPLODE function - takes an array as input and returns the elements of the array
 
 select col1 from table1
-[1, 2, 6]
-[9,6]
-4
-5
+|col1|  
+|--|
+|[1, 2, 6]|
+|[9, 6]|
+|4|
+|5|
+
 
 select EXPLODE(col1) FROM table1
-1
-2
-6
-9
-6
-4
-5
+|col1|  
+|--|
+|[1, 2, 6]|
+|1|
+|2|
+|6|
+|9|
+|6|
+|4|
+|5|
 
 USE CASE 8  - Lateral view function
 
