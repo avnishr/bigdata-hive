@@ -116,7 +116,6 @@ select col1 from table1
 select EXPLODE(col1) FROM table1
 |col1|  
 |--|
-|[1, 2, 6]|
 |1|
 |2|
 |6|
@@ -125,22 +124,39 @@ select EXPLODE(col1) FROM table1
 |4|
 |5|
 
-USE CASE 8  - Lateral view function
+# Lateral view function
 
-We can't select other columns in the select statements 
+When using explode, we can't select other columns in the select statements 
+ 
+| col1 | col2  |
+|---|---|
+|A|[x, y, z]|
+|C|[l,m]| 
+|D|[o,p,q,r]|
 
-Author		Books 
-
-A 		[x, y, z]
-B		[l, m]
-C		[o, p, q, r]
 
 A virtual table is created using the explode function and then joined. 
 
 SELECT AUTHOR, DUMMY_BOOKS FROM TABLE2 LATERAL VIEW EXPLODE(BOOKS) DUMMY AS DUMMY_BOOKS
 
-A x
-A y 
+Output of LATERAL VIEW EXPLODE(BOOKS) 
 
-Here the virtual table is DUMMY having a column DUMMY_BOOKS. THis is then joined with the TABLE2. 
+| DUMMY_BOOKS|
+|---|
+|x|
+|y|
+|z|
+|l|
+|m|
+
+Output of the query 
+| AUTHOR | DUMMY_BOOKS |
+| --- | ---|
+|A|x|
+|A|y|
+|A|z|
+|B|l|
+|B|m|
+
+Here the virtual table is DUMMY having a column DUMMY_BOOKS. This is then joined with the TABLE2. 
 
