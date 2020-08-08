@@ -55,3 +55,28 @@ Now let us insert data into the dynamic partitions
 The column on which the partitioning is to be done should be present in the last (col2 in the source table is kept at the last)
 
 Hive will create a seperate partition for each of the unique values in the col2. 
+
+If I want to load data into the partition 
+
+    Load data local inpath /home/user/data into table part_dep1 partition (deptname='AB')
+
+At this moment, we created a partition and then loaded the data. 
+
+Now let us create a directory in HDFS and then access the data from hive. 
+
+    ls -lrt 
+    /user/hive/warehouse/part_dept1/deptname=Sales
+    mkdir /user/hive/warehouse/part_dept1/deptname=Finance
+    hive> show partitions 
+
+Hive does not recognise the partition Finance because the metadata for Finance is not there. 
+
+We can add metadata
+
+    alter table part_dept1 add partition (deptname='Finance')
+
+or we can do something like this 
+
+    msck repair table part_dept1;
+
+The partition "Finance" will now be present
