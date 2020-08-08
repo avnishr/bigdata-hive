@@ -128,7 +128,7 @@ select EXPLODE(col1) FROM table1
 
 When using explode, we can't select other columns in the select statements 
  
-| col1 | col2  |
+| author | books  |
 |---|---|
 |A|[x, y, z]|
 |C|[l,m]| 
@@ -137,9 +137,11 @@ When using explode, we can't select other columns in the select statements
 
 A virtual table is created using the explode function and then joined. 
 
-SELECT AUTHOR, DUMMY_BOOKS FROM TABLE2 LATERAL VIEW EXPLODE(BOOKS) DUMMY AS DUMMY_BOOKS
+SELECT AUTHOR, DUMMY_BOOKS 
+FROM tabl2 LATERAL VIEW EXPLODE(books) DUMMY AS DUMMY_BOOKS
 
 Output of LATERAL VIEW EXPLODE(BOOKS) 
+will create a temporary table like the one below and then do a join
 
 | DUMMY_BOOKS|
 |---|
