@@ -137,3 +137,22 @@ A y
 
 Here the virtual table is DUMMY having a column DUMMY_BOOKS. THis is then joined with the TABLE2. 
 
+Another use of LATERAL VIEW is 
+
+If a column is a MAP datatype i.e, 
+
+table3 
+col1
+{"12" : "a" }
+{"13" : "b" }
+{"14" : "c" }
+
+etc, the LATERAL VIEW function will seperate the keys and values 
+
+select key, value from table3 lateral view explode(col1) dummy as key, value;
+
+key	value
+12	a
+13	b
+14	c
+
