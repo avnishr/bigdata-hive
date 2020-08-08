@@ -45,4 +45,8 @@ Can we have any number of indexes for a table?
 
     alter index i4 on table9 rebuild
 
+### Show indexes
+
+    Show formatted indexes on table9
+
 
