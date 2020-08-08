@@ -1,26 +1,31 @@
+# Basic Queries
+
+#### Create Internal Tables
 CREATE Table IF NOT EXISTS TABLE1 (col1 string, col2 array<string> , col3 string, col4 int)
-ROW FORMAT DELIMITED BY ',' 
+ROW FORMAT DELIMITED BY   ','
 COLLECTION ITEMS TERMINATED BY ':' 
 LINES TERMINATED BY '\n'
 STORED as TEXTFILE
 
 
 CREATE TABLE IF NOT EXISTS TABLE7 (col1 string, col2 array<string>, col3 string, col4 int) 
-row format DELIMITED FIELDS TERMINATED BY ',' collection items terminated by ':' lines terminated by '\n'
+row format DELIMITED FIELDS TERMINATED BY ','
+collection items terminated by ':'
+lines terminated by '\n'
 STORED as TEXTFILE
 
 /usr/hive/warehouse (internal tables)
 
 LOAD DATA LOCAL INPATH <data path> INTO TABLE TABLE1;
 
-
+#### External Tables
 CREATE EXTERNAL TABLE IF NOT EXISTS TABLE7 (col1 string, col2 array<string>, col3 string, col4 int) 
 row format DELIMITED FIELDS TERMINATED BY ',' collection items terminated by ':' lines terminated by '\n'
 STORED as TEXTFILE
 
 LOAD DATA LOCAL INPATH <PATH> INTO TABLE <EXTERNAL_TABLE>
 
-// Display column names on the table
+We can display column names on the table
 set hive.cli.print.header = true
 
 
@@ -30,27 +35,29 @@ Note:- If we run this command two times, the number of records will be added twi
 
 INSERT OVERWRITE TABLE TAB SELECT COL1, COL2, COL3 FROM EMP_TAB;
 
-Use Case 2. WRITE source data into two tables 
+# WRITE source data into two tables 
 -----------
-1. Create two target tables 
-2. 	create table DEV (id int, name string, desg string) stored as textfile;
-	create table PROD (id int, name string, desg string) stored as textfile;
+
+ 1. Create two target tables
+ 2. Create table DEV (id int, name string, desg string) stored as textfile;
+	Create table PROD (id int, name string, desg string) stored as textfile;
+	
 3. FROM emp_tab INSERT INTO DEV select col1, col2, col3 where col3 = 'Developer' INSERT INTO PROD SELECT COL1,COL2, COL3 WHERE COL3 = 'Prod'
 
-Use Case 3 . ALTER TABLE
-----------
+# ALTER TABLE
 1. ALTER TABLE <Table Name> change col1 col1New after col3; 
 
-Desc <table name>
+Desc < table name>
 
 2. Change the name of the column - ALTER TABLE CHANGE COLUMN COL2 NEW_COL2 string; 
 
 3. Change the name of the table -  ALTER TABLE TAB RENAME TO TAB1;
 
-4. ALTER TABLE <TABLE NAME> REPLACE COLUMNS (id int, name string); This will remove all the column names and if the table contained 5 columns, only the first two will be retained
+4. ALTER TABLE <TABLE NAME> REPLACE COLUMNS (id int, name string); This will remove all the column names and if the table contained 
+5. columns, only the first two will be retained
 
-5. ALTER TABLE <table name> set TBLPROPERTIES('auto.purge' = true);
-6. ALTER TABLE SET fileformat avro;
+6. ALTER TABLE <table name> set TBLPROPERTIES('auto.purge' = true);
+7. ALTER TABLE SET fileformat avro;
 
 
 USE CASE 4. 
@@ -136,23 +143,4 @@ A x
 A y 
 
 Here the virtual table is DUMMY having a column DUMMY_BOOKS. THis is then joined with the TABLE2. 
-
-Another use of LATERAL VIEW is 
-
-If a column is a MAP datatype i.e, 
-
-table3 
-col1
-{"12" : "a" }
-{"13" : "b" }
-{"14" : "c" }
-
-etc, the LATERAL VIEW function will seperate the keys and values 
-
-select key, value from table3 lateral view explode(col1) dummy as key, value;
-
-key	value
-12	a
-13	b
-14	c
 
